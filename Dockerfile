@@ -44,10 +44,12 @@ RUN apt-get -y install apache2 libapache2-mod-fcgid mysql-server mysql-client \
                        libnet-openid-consumer-perl libcrypt-openssl-bignum-perl \
                        liblwp-authen-oauth-perl \
                        liblwpx-paranoidagent-perl libnet-ping-external-perl \
-                       libxml-treepp-perl libcache-perl libswitch-perl
+                       libxml-treepp-perl libcache-perl libswitch-perl htop \
+                       dnsutils aptitude libfilter-perl libio-all-lwp-perl \
+                       libio-all-perl libspiffy-perl
+
 RUN apt-get clean
 RUN apt-get purge
-RUN apt-get clean all
 
 RUN cd $DST && \
     wget $CMAKE_URL/$CMAKE_INSTALLER && \
@@ -85,10 +87,11 @@ COPY entrypoint.sh /sbin/entrypoint.sh
 COPY init_db.sh /sbin/init_db.sh
 RUN chmod 755 /sbin/entrypoint.sh /sbin/init_db.sh
 
+
 WORKDIR /data/
 
 EXPOSE 80
 
-ENTRYPOINT ["/sbin/entrypoint.sh"]
+CMD ["/sbin/entrypoint.sh"]
 
 

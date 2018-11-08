@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+mysql_install_db --user=mysql --ldata=/var/lib/mysql
+service mysql restart
+
 #MYSQL user database setup
 mysql -hlocalhost < /usr/share/zenbu/src/$ZENBU_FOLDER/build_support/zenbu_mysql_cmds1.txt
 mysql -hlocalhost < /usr/share/zenbu/src/$ZENBU_FOLDER/build_support/zenbu_mysql_cmds.txt
